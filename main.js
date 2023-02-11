@@ -161,3 +161,87 @@ const inventory = [
     sold: 8,
   },
 ];
+
+//////////////////////////// Opdracht èèn /////////////////////////////////////
+
+const televisionNames = inventory.map((television) => {
+  return television.name;
+});
+
+console.log(televisionNames);
+
+//
+
+const televisionsInStock = inventory.filter((stock) => {
+  return stock.originalStock === stock.sold;
+});
+
+console.log(televisionsInStock);
+
+//
+
+const withAmbilight = inventory.filter((ambilight) => {
+  return ambilight.options.ambiLight;
+});
+
+console.log(withAmbilight);
+
+//
+
+const pricingOrder = inventory.sort((a, b) => {
+  if (a.price >= b.price) {
+    return 1;
+  }
+    else if (a.price <= b.price) {
+      return -1
+    }
+      else return 0
+});
+
+console.log(pricingOrder);
+
+////////////////////////////// Opdracht twee////////////////////////////////////
+
+function totalAmountSold(inventory) {
+  let totalOut = 0;
+  for (let i = 0; i < inventory.length; i++){
+    totalOut = totalOut + inventory [i].sold;
+  }
+  return totalOut;
+};
+
+console.log(totalAmountSold(inventory));
+
+//
+
+const totalSold = document.getElementById("total-amount-out");
+
+totalSold.textContent = "Totaal aantal verkochte televisies is: " + totalAmountSold(inventory);
+
+//
+
+function totalAmountPurchased(inventory) {
+  let totalIn = 0;
+  for (let i = 0; i < inventory.length; i++) {
+    totalIn = totalIn + inventory [i].originalStock;
+  }
+  return totalIn;
+};
+
+console.log(totalAmountPurchased(inventory));
+
+//
+
+const totalPurchased = document.getElementById("total-amount-in");
+
+totalPurchased.textContent = "Totaal aantal ingekochte televisies is: " + totalAmountPurchased(inventory);
+
+//
+
+const totalGoal = document.getElementById("total-goal");
+
+totalGoal.textContent = "We hebben er nog " + (totalAmountPurchased(inventory) - totalAmountSold(inventory)) + " om te verkopen!";
+
+////////////////////////////// Opdracht drie/////////////////////////////////////
+
+
