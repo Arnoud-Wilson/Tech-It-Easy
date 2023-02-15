@@ -200,7 +200,7 @@ const pricingOrder = inventory.sort((a, b) => {
 
 console.log(pricingOrder);
 
-////////////////////////////// Opdracht twee////////////////////////////////////
+// ////////////////////////////// Opdracht twee////////////////////////////////////
 
 function totalAmountSold(inventory) {
   let totalOut = 0;
@@ -244,4 +244,41 @@ totalGoal.textContent = "We hebben er nog " + (totalAmountPurchased(inventory) -
 
 ////////////////////////////// Opdracht drie/////////////////////////////////////
 
+const allBrands = inventory.map((brandItem) => {
+  return brandItem.brand;
+});
 
+const televisionBrands = document.getElementById("television-brands");
+televisionBrands.textContent = allBrands.join(", ");
+
+////////////////////////////// Opdracht vier////////////////////////////////
+
+function televisionTypes(inventory) {
+  for (let i = 0; i < inventory.length; i++) {
+     return `${inventory[i].brand} ${inventory[i].type} - ${inventory[i].name}`;
+  }
+}
+
+console.log(televisionTypes(inventory));
+
+//
+
+function televisionPrice(price) {
+  return `€${price},-`;
+}
+
+console.log(televisionPrice(379));
+
+//
+
+function televisionSizes(inventory) {
+  for (let i = 0; i < inventory.length; i++) {
+    return inventory[i].availableSizes;
+  }
+}
+
+console.log(televisionSizes(inventory))
+
+
+// Ik ben helaas helemaal vastgelopen bij opdracht 4C. Ben te lang zelf aan het prutsen geweest dus nu ben ik te laat voor hulp van de SMEer...
+// Het lukt mij niet om achter iedere "availebleSizes entry" inches enzo te zetten, dit lukte mij alleen achter alle entrys van de array...
