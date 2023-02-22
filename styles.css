@@ -13,3 +13,16 @@
 #television-tile {
     background-color: lightgrey;
 }
+
+#single-tv {
+    background-color: darkgray;
+}
+
+li {
+    list-style: none;
+}
+
+#all-tv {
+    background-color: aliceblue;
+    border: 1px solid black;
+}

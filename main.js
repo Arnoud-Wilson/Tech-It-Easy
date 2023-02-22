@@ -192,10 +192,10 @@ const pricingOrder = inventory.sort((a, b) => {
   if (a.price >= b.price) {
     return 1;
   }
-    else if (a.price <= b.price) {
-      return -1
-    }
-      else return 0
+  else if (a.price <= b.price) {
+    return -1
+  }
+  else return 0
 });
 
 console.log(pricingOrder);
@@ -205,7 +205,7 @@ console.log(pricingOrder);
 function totalAmountSold(inventory) {
   let totalOut = 0;
   for (let i = 0; i < inventory.length; i++){
-    totalOut = totalOut + inventory [i].sold;
+    totalOut = totalOut += inventory [i].sold;
   }
   return totalOut;
 };
@@ -223,7 +223,7 @@ totalSold.textContent = "Totaal aantal verkochte televisies is: " + totalAmountS
 function totalAmountPurchased(inventory) {
   let totalIn = 0;
   for (let i = 0; i < inventory.length; i++) {
-    totalIn = totalIn + inventory [i].originalStock;
+    totalIn = totalIn += inventory [i].originalStock;
   }
   return totalIn;
 };
@@ -253,11 +253,9 @@ televisionBrands.textContent = allBrands.join(", ");
 
 ////////////////////////////// Opdracht vier////////////////////////////////
 
-function televisionTypes(inventory) {
-  for (let i = 0; i < inventory.length; i++) {
-     return `${inventory[i].brand} ${inventory[i].type} - ${inventory[i].name}`;
-  }
-}
+function televisionTypes(tv) {
+     return `${tv.brand} ${tv.type} - ${tv.name}`;
+};
 
 console.log(televisionTypes(inventory));
 
@@ -271,14 +269,47 @@ console.log(televisionPrice(379));
 
 //
 
-function televisionSizes(inventory) {
+function televisionSizes() {
+
+  let output = "";
+
   for (let i = 0; i < inventory.length; i++) {
-    return inventory[i].availableSizes;
+    const availebleSiseInch =  inventory[i].availableSizes;
+    const availebleSizeCM = availebleSiseInch * 2.54;
+
+    output = output + `${availebleSiseInch} inch (${availebleSizeCM} cm)`;
   }
+  return output;
 }
 
 console.log(televisionSizes(inventory))
 
+//
 
-// Ik ben helaas helemaal vastgelopen bij opdracht 4C. Ben te lang zelf aan het prutsen geweest dus nu ben ik te laat voor hulp van de SMEer...
-// Het lukt mij niet om achter iedere "availebleSizes entry" inches enzo te zetten, dit lukte mij alleen achter alle entrys van de array...
+const televisionContainerSingle = document.getElementById("single-tv");
+
+televisionContainerSingle.innerHTML = `
+    <h3>${televisionTypes(inventory[2])}</h3>
+    <h4>${televisionPrice(inventory[2].price)}</h4>
+    <p>${televisionSizes(inventory[2])}</p>
+`;
+
+//
+
+function allTelevisionsList(tvList) {
+  const allTvList = document.getElementById("all-tv");
+
+  const singleTelevision = tvList.map((television) => {
+    return `
+      <li>
+        <h3>${televisionTypes(television)}</h3>
+        <h4>${televisionPrice(television.price)}</h4>
+        <p>${televisionSizes(television.availableSizes)}</p>
+      </li>
+    `;
+  });
+  allTvList.innerHTML = `${singleTelevision.join("")}`;
+}
+
+allTelevisionsList(inventory);
+
